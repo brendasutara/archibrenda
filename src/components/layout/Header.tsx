@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 export function Header() {
   const linkStyle: React.CSSProperties = {
     textDecoration: "none",
-    color: "#111827",
+    color: "white",
     fontSize: "0.95rem",
   };
 
@@ -17,19 +17,17 @@ export function Header() {
     <header
       style={{
         padding: "0.75rem 1.5rem",
-        borderBottom: "1px solid #e5e7eb",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         position: "sticky",
         top: 0,
-        background: "white",
         zIndex: 10,
       }}
     >
       <Link
         to="/"
-        style={{ textDecoration: "none", color: "#111827", fontWeight: 700 }}
+        style={{ textDecoration: "none", color: "white", fontWeight: 700 }}
       >
         Archibrenda 3D
       </Link>

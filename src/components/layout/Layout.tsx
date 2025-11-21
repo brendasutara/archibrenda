@@ -9,7 +9,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <div
-      className="app-shell"
+      className="app-shell bg-gradient-to-br from-pink-500 via-purple to-blue-500"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <Header />
