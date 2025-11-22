@@ -1,17 +1,26 @@
+import { Environment } from "@react-three/drei";
+
 export function BasicLights() {
   return (
     <>
-      {/* Luz base suave */}
-      <ambientLight intensity={0.6} />
+      <ambientLight intensity={0.45} />
 
-      {/* Luz rosada desde izquierda */}
-      <directionalLight position={[-5, 5, 5]} intensity={2} color="#ff7ae5" />
+      <directionalLight
+        position={[5, 8, 5]}
+        intensity={1.2}
+        castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
 
-      {/* Luz violeta desde arriba */}
-      <directionalLight position={[0, 8, 5]} intensity={1.5} color="#c084fc" />
+      <hemisphereLight
+        color={"#e3e7ef"}
+        groundColor={"#ffffff"}
+        intensity={0.6}
+      />
 
-      {/* Luz azul fría desde atrás */}
-      <directionalLight position={[6, 4, -3]} intensity={1.2} color="#60a5fa" />
+      {/* HDR personalizado */}
+      <Environment files="hdr/studio_small_08_1k.hdr" background={false} />
     </>
   );
 }
