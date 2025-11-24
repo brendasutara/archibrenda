@@ -400,7 +400,7 @@ export const Home = () => {
           <div className="flex justify-center h-44 md:h-80 rounded-3xl bg-gradient-to-br from-[#FFE5EC] via-[#F3E7FF] to-[#E4F0FF] shadow-md shadow-slate-900/5">
             <img
               loading="lazy"
-              src="/src/assets/brenda-sutara.png"
+              src="/brenda-sutara.png"
               alt="Brenda Sutara, profesora de Archicad"
               className="h-full"
             />

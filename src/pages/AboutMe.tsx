@@ -45,7 +45,7 @@ export const AboutMe = () => {
 
           <div className="flex justify-center h-52 md:h-80 rounded-3xl bg-gradient-to-br from-[#FFE5EC] via-[#F3E7FF] to-[#E4F0FF] shadow-md shadow-slate-900/5 overflow-hidden">
             <img
-              src="/src/assets/brenda-sutara.png"
+              src="/brenda-sutara.png"
               alt="Brenda Sutara, creadora de Archibrenda"
               className="h-full object-contain"
             />
