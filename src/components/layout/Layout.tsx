@@ -9,7 +9,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <div
-      className="app-shell bg-[#cfd3d8]"
+      className="app-shell bg-[#FDFBFF] text-slate-900"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <Header />

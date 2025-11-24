@@ -7,7 +7,7 @@ export function BasicLights() {
 
       <directionalLight
         position={[5, 8, 5]}
-        intensity={1.2}
+        intensity={1}
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -20,7 +20,10 @@ export function BasicLights() {
       />
 
       {/* HDR personalizado */}
-      <Environment files="hdr/studio_small_08_1k.hdr" background={false} />
+      <Environment
+        files="hdr/christmas_photo_studio_01_1k.hdr"
+        background={false}
+      />
     </>
   );
 }

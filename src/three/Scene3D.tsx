@@ -11,7 +11,7 @@ export const Scene3D = () => {
       <Suspense fallback={null}>
         <BasicLights />
 
-        <Center scale={1.5} position={[0, -0.3, 0]}>
+        <Center scale={1} position={[0, -0.3, 0]}>
           <Cocina />
         </Center>
 
