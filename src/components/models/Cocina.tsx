@@ -26,7 +26,7 @@ export function Cocina(props: GroupProps) {
 
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+      <group rotation={[-Math.PI / 2, 0, 1.5]}>
         <mesh
           geometry={(nodes.Material63 as THREE.Mesh).geometry}
           material={materials.Material63}
