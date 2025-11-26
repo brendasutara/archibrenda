@@ -328,14 +328,14 @@ export const Classes = () => {
 
             {/* Podés reemplazar esto por un formulario real o link a WhatsApp */}
             <a
-              href="mailto:tu-correo@ejemplo.com"
+              href="mailto:sutarabrenda@gmail.com"
               className="cursor-pointer inline-flex items-center justify-center w-full rounded-full bg-[#7B6CFF] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#5c4ef0] mb-3"
             >
               Escribirme por mail
             </a>
 
             <a
-              href="https://wa.me/XXXXXXXXXXX"
+              href="https://wa.me/2617007601"
               target="_blank"
               rel="noreferrer"
               className="cursor-pointer inline-flex items-center justify-center w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100"

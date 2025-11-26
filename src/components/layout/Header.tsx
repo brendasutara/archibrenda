@@ -34,12 +34,14 @@ export function Header() {
           </Link>
         </nav>
 
-        <Link
-          to="/clases"
+        <a
+          href="https://wa.me/2617007601"
+          target="_blank"
+          rel="noreferrer"
           className="hidden md:inline-flex items-center rounded-full bg-[#FF6B81] px-4 py-1.5 text-xs font-semibold text-white shadow-sm shadow-[#FF6B81]/40 hover:bg-[#ff516b]"
         >
           Reservar clase
-        </Link>
+        </a>
       </div>
     </header>
   );
