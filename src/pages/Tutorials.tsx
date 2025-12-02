@@ -1,34 +1,11 @@
 import { Link } from "react-router-dom";
+import { HeroTutorial } from "../screens/HeroTutorial";
 
 export const Tutorials = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* HERO */}
-      <section className="border-b border-slate-200 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-          <h1 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-            Tutoriales de Archicad en español
-          </h1>
-
-          <p className="max-w-2xl text-sm md:text-base text-slate-600 mb-6">
-            Aprendé Archicad paso a paso con tutoriales gratuitos: modelado 3D,
-            documentación, optimización del tiempo, representación gráfica y
-            mucho más.
-          </p>
-
-          {/* Buscador */}
-          <div className="flex items-center w-full max-w-xl">
-            <input
-              type="text"
-              placeholder="Buscar tutorial…"
-              className="w-full border border-slate-300 rounded-l-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-[#7B6CFF]"
-            />
-            <button className="bg-[#7B6CFF] text-white px-6 py-3 rounded-r-full cursor-pointer hover:bg-[#6b5ae9] transition">
-              Buscar
-            </button>
-          </div>
-        </div>
-      </section>
+      <HeroTutorial />
 
       {/* CATEGORÍAS */}
       <section className="border-b border-slate-200 bg-white">

@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import { Navbar } from "../components/ui/Navbar";
 
 export const AboutMe = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* HERO */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-4">
+        <Navbar />
+      </div>
+
       <section className="border-b border-slate-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
           <div>
@@ -11,7 +15,7 @@ export const AboutMe = () => {
               Sobre mí
             </p>
             <h1 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-              Soy Brenda, arquitecta digital detrás de Archibrenda.
+              Soy Brenda, la persona detrás de Archibrenda.
             </h1>
             <p className="text-sm md:text-base text-slate-600 mb-4 max-w-xl">
               Desde hace más de 8 años enseño Archicad a arquitectos,

@@ -1,7 +1,12 @@
+import { Navbar } from "../components/ui/Navbar";
+
 export const Classes = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* HERO */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-4">
+        <Navbar />
+      </div>
+
       <section className="border-b border-slate-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center">
           <div>

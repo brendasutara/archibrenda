@@ -23,7 +23,7 @@ export function DetalleEncuentro(
 
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+      <group rotation={[-Math.PI / 2, 0, 1.4]}>
         <mesh
           castShadow
           receiveShadow
