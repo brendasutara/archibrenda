@@ -5,18 +5,25 @@ import { Suspense } from "react";
 import { BasicLights } from "./BasicLights";
 import { Cocina } from "../components/models/Cocina";
 
-export const Scene3D = () => {
+export const Scene3D = ({
+  onFirstInteract,
+}: {
+  onFirstInteract?: () => void;
+}) => {
   return (
     <Canvas camera={{ position: [7, 6, 10], fov: 32 }} shadows>
       <Suspense fallback={null}>
         <BasicLights />
-
         <Center scale={1} position={[0, -0.3, 0]}>
           <Cocina />
         </Center>
 
         <OrbitControls
           enableDamping
+          dampingFactor={0.08}
+          autoRotate
+          autoRotateSpeed={0.9}
+          onStart={() => onFirstInteract?.()}
           maxPolarAngle={Math.PI / 2.1}
           minPolarAngle={Math.PI / 3}
         />

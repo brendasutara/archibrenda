@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Navbar } from "../components/ui/Navbar";
 import { Scene3D } from "../three/Scene3D";
 
 export const HeroScreen = () => {
+  const [showHint, setShowHint] = useState(true);
+
   return (
     <section className="flex flex-col lg:flex-row w-full p-2 justify-center gap-4">
       <div className="flex flex-col">
@@ -50,8 +53,19 @@ export const HeroScreen = () => {
           </a>
         </div>
 
-        <div className="hero">
-          <Scene3D />
+        <div className="hero relative">
+          <Scene3D onFirstInteract={() => setShowHint(false)} />
+
+          {showHint && (
+            <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
+              <div className="flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm border border-slate-200/70">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-900/90 text-white">
+                  ⟲
+                </span>
+                Arrastrá para mover (3D)
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
