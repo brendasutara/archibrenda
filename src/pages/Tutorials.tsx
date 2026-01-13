@@ -44,12 +44,16 @@ export const Tutorials = () => {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* CARD */}
             <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <div className="w-full h-40 bg-slate-200 rounded-xl mb-4"></div>
+              <img
+                src="/blog/puntos-en-planta/portada.png"
+                alt="Puntos en planta"
+                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
+              />
               <span className="inline-block text-[11px] text-[#FF6B81] font-semibold mb-2">
-                ABC Archicad
+                Errores en archicad
               </span>
               <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-[#FF6B81]">
-                Archicad desde cero: tus primeros pasos
+                Se me ven puntitos en planta
               </h3>
               <p className="text-sm text-slate-600 mb-3">
                 Navegación, interfaz y primeros elementos para empezar sin
@@ -61,7 +65,11 @@ export const Tutorials = () => {
             </article>
 
             <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <div className="w-full h-40 bg-slate-200 rounded-xl mb-4"></div>
+              <img
+                src="/blog/no-hay-superficie/1.png"
+                alt="No hay superficie"
+                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
+              />
               <span className="inline-block text-[11px] text-[#7B6CFF] font-semibold mb-2">
                 Modelado 3D
               </span>
@@ -76,12 +84,16 @@ export const Tutorials = () => {
             </article>
 
             <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <div className="w-full h-40 bg-slate-200 rounded-xl mb-4"></div>
+              <img
+                src="/blog/como-funcionan-las-plumas/portada.png"
+                alt="Como funcionan las plumas"
+                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
+              />
               <span className="inline-block text-[11px] text-[#FFB347] font-semibold mb-2">
-                Representación gráfica
+                ABC Archicad
               </span>
               <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-[#FFB347]">
-                Cortes 3D perspectivados
+                ¿Cómo funcionan las plumas en Archicad?
               </h3>
               <p className="text-sm text-slate-600 mb-3">
                 Cómo crear cortes 3D listos para presentaciones profesionales.
