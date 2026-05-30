@@ -1,118 +1,278 @@
-import { Link } from "react-router-dom";
-import { HeroTutorial } from "../screens/HeroTutorial";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TutorialsHero } from "../components/tutorials/TutorialsHero";
+import { TutorialCategories } from "../components/tutorials/TutorialCategories";
+import { TutorialCard } from "../components/tutorials/TutorialCard";
+import { TutorialsCTA } from "../components/tutorials/TutorialsCTA";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const categories = [
+  "ABC Archicad",
+  "Modelado 3D",
+  "Documentación",
+  "Representación gráfica",
+  "Optimizar el tiempo",
+  "Errores frecuentes",
+];
+
+const tutorials = [
+  {
+    image: "/blog/puntos-en-planta/portada.png",
+    category: "Errores frecuentes",
+    title: "Se me ven puntitos en planta",
+    description:
+      "Aprende por que aparecen esos puntos en planta y como corregir la visualizacion sin perder tiempo.",
+    meta: "Video + guia paso a paso",
+    accent: "#FF6B81",
+  },
+  {
+    image: "/blog/no-hay-superficie/1.png",
+    category: "Modelado 3D",
+    title: "Cómo resolver el error de superficie",
+    description:
+      "Un caso practico para entender materiales, superficies y ajustes basicos del modelo.",
+    meta: "Proyecto guiado",
+    accent: "#7B6CFF",
+  },
+  {
+    image: "/blog/como-funcionan-las-plumas/portada.png",
+    category: "ABC Archicad",
+    title: "Cómo funcionan las plumas en Archicad",
+    description:
+      "Configura plumas con criterio para que tus plantas, cortes y laminas se lean mejor.",
+    meta: "Tip visual",
+    accent: "#FFB347",
+  },
+  {
+    image: "/blog/no-hay-superficie/2.png",
+    category: "Documentación",
+    title: "Ordena vistas antes de armar laminas",
+    description:
+      "Una forma simple de preparar vistas, escalas y estructura de documentacion para trabajar mas claro.",
+    meta: "Flujo de trabajo",
+    accent: "#2EC3FF",
+  },
+  {
+    image: "/blog/puntos-en-planta/4.png",
+    category: "Representacion grafica",
+    title: "Mejora la lectura grafica de tus plantas",
+    description:
+      "Ajustes concretos para lograr una planta mas limpia, profesional y facil de presentar.",
+    meta: "Clase aplicada",
+    accent: "#6ee7b7",
+  },
+  {
+    image: "/blog/no-hay-superficie/4.png",
+    category: "Optimizar el tiempo",
+    title: "Atajos para avanzar mas rapido",
+    description:
+      "Pequenos habitos de Archicad que reducen tareas repetitivas y ordenan tu proceso diario.",
+    meta: "Productividad",
+    accent: "#F43F5E",
+  },
+];
 
 export const Tutorials = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const ctx = gsap.context(() => {
+      const heroItems = [
+        "[data-tutorial-nav]",
+        "[data-tutorial-badge]",
+        "[data-tutorial-title]",
+        "[data-tutorial-copy]",
+        "[data-tutorial-search]",
+      ];
+
+      if (reduceMotion) {
+        gsap.set(
+          [
+            ...heroItems,
+            "[data-tutorial-visual]",
+            "[data-tutorial-blob]",
+            "[data-tutorial-category]",
+            "[data-tutorial-card]",
+            "[data-tutorial-cta]",
+          ],
+          { autoAlpha: 1, y: 0, scale: 1, rotate: 0 }
+        );
+        return;
+      }
+
+      gsap
+        .timeline({ defaults: { ease: "power3.out" }, delay: 0.08 })
+        .fromTo(
+          "[data-tutorial-nav]",
+          { autoAlpha: 0, y: -14 },
+          { autoAlpha: 1, y: 0, duration: 0.55 }
+        )
+        .fromTo(
+          "[data-tutorial-badge]",
+          { autoAlpha: 0, y: 18 },
+          { autoAlpha: 1, y: 0, duration: 0.48 },
+          "-=0.18"
+        )
+        .fromTo(
+          "[data-tutorial-title]",
+          { autoAlpha: 0, y: 36 },
+          { autoAlpha: 1, y: 0, duration: 0.72 },
+          "-=0.12"
+        )
+        .fromTo(
+          "[data-tutorial-copy]",
+          { autoAlpha: 0, y: 22 },
+          { autoAlpha: 1, y: 0, duration: 0.55 },
+          "-=0.34"
+        )
+        .fromTo(
+          "[data-tutorial-search]",
+          { autoAlpha: 0, y: 20 },
+          { autoAlpha: 1, y: 0, duration: 0.5 },
+          "-=0.25"
+        )
+        .fromTo(
+          "[data-tutorial-blob]",
+          { autoAlpha: 0, scale: 0.9, rotate: -3 },
+          { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.8 },
+          "-=0.58"
+        )
+        .fromTo(
+          "[data-tutorial-visual]",
+          { autoAlpha: 0, y: 34, scale: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.78 },
+          "-=0.72"
+        );
+
+      gsap.to("[data-tutorial-visual]", {
+        y: -42,
+        x: -18,
+        scale: 1.055,
+        rotate: 2.2,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "[data-tutorial-content]",
+          start: "top 82%",
+          end: "bottom 35%",
+          scrub: 0.8,
+        },
+      });
+
+      gsap.to("[data-tutorial-blob]", {
+        y: -24,
+        x: 18,
+        scale: 1.035,
+        rotate: -2.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "[data-tutorial-content]",
+          start: "top 88%",
+          end: "bottom 42%",
+          scrub: 0.9,
+        },
+      });
+
+      gsap.fromTo(
+        "[data-tutorial-category]",
+        { autoAlpha: 0, y: 20, scale: 0.98 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.48,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-tutorial-categories]",
+            start: "top 78%",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        "[data-tutorial-card]",
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.58,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-tutorial-grid]",
+            start: "top 78%",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        "[data-tutorial-cta]",
+        { autoAlpha: 0, y: 30, scale: 0.98 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.65,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-tutorial-cta]",
+            start: "top 82%",
+          },
+        }
+      );
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* HERO */}
-      <HeroTutorial />
+    <div
+      ref={pageRef}
+      className="min-h-screen overflow-x-hidden bg-[#fbf8f8] text-slate-950"
+    >
+      <TutorialsHero />
 
-      {/* CATEGORÍAS */}
-      <section className="border-b border-slate-200 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-14">
-          <h2 className="text-xl md:text-2xl font-semibold text-slate-900 mb-6">
-            Categorías
-          </h2>
+      <main
+        data-tutorial-content
+        className="relative z-10 border-t border-white/70 bg-[linear-gradient(180deg,#fbf8f8_0%,#ffffff_42%,#f7f4f5_100%)]"
+      >
+        <TutorialCategories categories={categories} />
 
-          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {[
-              { name: "ABC Archicad", color: "#FF6B81" },
-              { name: "Modelado 3D", color: "#7B6CFF" },
-              { name: "Documentación", color: "#FFB347" },
-              { name: "Representación gráfica", color: "#2EC3FF" },
-              { name: "Optimizar el tiempo", color: "#6ee7b7" },
-              { name: "Errores frecuentes", color: "#F43F5E" },
-            ].map((cat) => (
-              <button
-                key={cat.name}
-                className="cursor-pointer rounded-2xl border border-slate-300 px-4 py-3 bg-white text-sm font-medium hover:shadow-md hover:-translate-y-0.5 transition"
-              >
-                {cat.name}
-              </button>
+        <section className="mx-auto max-w-[1240px] px-4 pb-14 pt-4 sm:px-6 md:pb-20 lg:px-10">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="inline-flex rounded-full border border-[#FF6B81]/18 bg-white/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#FF6B81] shadow-sm">
+                Recursos gratuitos
+              </span>
+              <h2 className="mt-4 text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[0.96] tracking-normal text-slate-950">
+                Últimos tutoriales
+              </h2>
+            </div>
+            <p className="max-w-[520px] text-sm leading-6 text-slate-600 md:text-base md:leading-7">
+              Guias claras y aplicadas a ejemplos reales para modelar,
+              documentar, representar y resolver problemas comunes dentro de
+              Archicad.
+            </p>
+          </div>
+
+          <div
+            data-tutorial-grid
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {tutorials.map((tutorial) => (
+              <TutorialCard key={tutorial.title} tutorial={tutorial} />
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* LISTADO DE TUTORIALES */}
-      <section className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-          <h2 className="text-xl md:text-2xl font-semibold text-slate-900 mb-8">
-            Últimos tutoriales
-          </h2>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* CARD */}
-            <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <img
-                src="/blog/puntos-en-planta/portada.png"
-                alt="Puntos en planta"
-                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
-              />
-              <span className="inline-block text-[11px] text-[#FF6B81] font-semibold mb-2">
-                Errores en archicad
-              </span>
-              <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-[#FF6B81]">
-                Se me ven puntitos en planta
-              </h3>
-              <p className="text-sm text-slate-600 mb-3">
-                Navegación, interfaz y primeros elementos para empezar sin
-                frustrarse.
-              </p>
-              <p className="text-[11px] text-slate-500">
-                Video + guía paso a paso
-              </p>
-            </article>
-
-            <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <img
-                src="/blog/no-hay-superficie/1.png"
-                alt="No hay superficie"
-                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
-              />
-              <span className="inline-block text-[11px] text-[#7B6CFF] font-semibold mb-2">
-                Modelado 3D
-              </span>
-              <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-[#7B6CFF]">
-                Cómo crear tu primer modelo 3D completo
-              </h3>
-              <p className="text-sm text-slate-600 mb-3">
-                Desde el plano hasta un modelo limpio y organizado para avanzar
-                en BIM.
-              </p>
-              <p className="text-[11px] text-slate-500">Proyecto guiado</p>
-            </article>
-
-            <article className="group cursor-pointer border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
-              <img
-                src="/blog/como-funcionan-las-plumas/portada.png"
-                alt="Como funcionan las plumas"
-                className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-300"
-              />
-              <span className="inline-block text-[11px] text-[#FFB347] font-semibold mb-2">
-                ABC Archicad
-              </span>
-              <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-[#FFB347]">
-                ¿Cómo funcionan las plumas en Archicad?
-              </h3>
-              <p className="text-sm text-slate-600 mb-3">
-                Cómo crear cortes 3D listos para presentaciones profesionales.
-              </p>
-              <p className="text-[11px] text-slate-500">Tip visual</p>
-            </article>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center mt-12">
-            <Link
-              to="/clases"
-              className="cursor-pointer inline-flex items-center text-sm font-medium text-[#FF6B81] hover:text-[#ff516b]"
-            >
-              ¿Querés aprender Archicad conmigo? Ver clases 1:1 ↗
-            </Link>
-          </div>
-        </div>
-      </section>
+        <TutorialsCTA />
+      </main>
     </div>
   );
 };

@@ -1,79 +1,93 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "../hooks/useScrollReveal";
+
+const items = [
+  {
+    kicker: "Desde cero",
+    title: "Primeros pasos",
+    text: "Navegación, interfaz, muros, puertas, ventanas, plantas y primeras vistas 3D sin volverte loco.",
+    color: "text-[#FF6B81]",
+  },
+  {
+    kicker: "Intermedio",
+    title: "Modelado 3D real",
+    text: "Capas, favoritos, organización del modelo y workflows para proyectos que crecen en complejidad.",
+    color: "text-[#7B6CFF]",
+  },
+  {
+    kicker: "Avanzado",
+    title: "Templates & optimización",
+    text: "Templates, atributos, mobiliario, cortes complejos y modelos listos para documentación y render.",
+    color: "text-[#FFB347]",
+  },
+  {
+    kicker: "Proyectos reales",
+    title: "Tu archivo, no ejemplos vacíos",
+    text: "Trabajamos directamente sobre tu proyecto para que cada clase se traduzca en avance real.",
+    color: "text-slate-500",
+  },
+];
 
 export const LearnScreen = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
+
   return (
-    <section className="border-t border-slate-200/70 bg-white">
-      <div className="2xl:max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-14">
-        <h2 className="text-xl md:text-2xl font-semibold text-slate-900 mb-4">
-          Qué podés aprender conmigo
-        </h2>
-        <p className="text-sm md:text-base text-slate-600 mb-8 max-w-2xl">
-          Te acompaño desde tus primeros pasos en Archicad hasta optimizar
-          proyectos grandes con metodología BIM aplicada, siempre trabajando
-          sobre tu propio modelo.
-        </p>
+    <section
+      ref={sectionRef}
+      id="contenido"
+      className="relative overflow-hidden border-t border-slate-200/70 bg-white"
+    >
+      <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 translate-x-1/3 rounded-full bg-[#FF6B81]/7 blur-3xl" />
 
-        <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[#FF6B81] mb-1">
-              Desde cero
-            </p>
-            <h3 className="text-sm font-semibold text-slate-900 mb-1">
-              Primeros pasos
-            </h3>
-            <p className="text-xs md:text-sm text-slate-600">
-              Navegación, interfaz, muros, puertas, ventanas, plantas y primeras
-              vistas 3D sin volverte loco.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[#7B6CFF] mb-1">
-              Intermedio
-            </p>
-            <h3 className="text-sm font-semibold text-slate-900 mb-1">
-              Modelado 3D real
-            </h3>
-            <p className="text-xs md:text-sm text-slate-600">
-              Capas, favoritos, organización del modelo y workflows para
-              proyectos que crecen en complejidad.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[#FFB347] mb-1">
-              Avanzado
-            </p>
-            <h3 className="text-sm font-semibold text-slate-900 mb-1">
-              Templates & optimización
-            </h3>
-            <p className="text-xs md:text-sm text-slate-600">
-              Templates, atributos, mobiliario, cortes complejos y modelos
-              listos para documentación y render.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
-              Proyectos reales
-            </p>
-            <h3 className="text-sm font-semibold text-slate-900 mb-1">
-              Tu archivo, no ejemplos vacíos
-            </h3>
-            <p className="text-xs md:text-sm text-slate-600">
-              Trabajamos directamente sobre tu proyecto para que cada clase se
-              traduzca en avance real.
-            </p>
-          </div>
+      <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20 lg:px-8">
+        <div data-reveal className="mb-10 max-w-2xl">
+          <span className="mb-3 inline-flex rounded-full border border-[#FF6B81]/15 bg-[#FF6B81]/8 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#FF6B81]">
+            Metodología aplicada
+          </span>
+          <h2 className="text-2xl font-semibold text-slate-900 md:text-4xl">
+            Qué podés aprender conmigo
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-600 md:text-base">
+            Te acompaño desde tus primeros pasos en Archicad hasta optimizar
+            proyectos grandes con metodología BIM aplicada, siempre trabajando
+            sobre tu propio modelo.
+          </p>
         </div>
 
-        <div className="mt-6">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {items.map((item, index) => (
+            <article
+              data-reveal-card
+              key={item.title}
+              className="group rounded-3xl border border-slate-200/80 bg-white/86 p-5 shadow-sm shadow-slate-900/5 transition hover:-translate-y-1 hover:border-[#FF6B81]/25 hover:shadow-[0_18px_50px_rgba(15,23,42,0.09)]"
+            >
+              <div className="mb-8 flex items-center justify-between">
+                <p
+                  className={`text-xs font-bold uppercase tracking-[0.16em] ${item.color}`}
+                >
+                  {item.kicker}
+                </p>
+                <span className="text-xs font-bold text-slate-300">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <h3 className="mb-2 text-base font-semibold text-slate-950">
+                {item.title}
+              </h3>
+              <p className="text-sm leading-6 text-slate-600">{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div data-reveal className="mt-8">
           <Link
             to="/clases"
-            className="cursor-pointer inline-flex items-center text-sm font-medium text-[#FF6B81] hover:text-[#ff516b]"
+            className="inline-flex items-center rounded-full border border-[#FF6B81]/25 bg-white px-5 py-3 text-sm font-bold text-[#FF6B81] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#FF6B81] hover:text-white"
           >
             Quiero empezar desde cero
-            <span className="ml-1 text-base">↗</span>
+            <span className="ml-2 text-base">↗</span>
           </Link>
         </div>
       </div>
