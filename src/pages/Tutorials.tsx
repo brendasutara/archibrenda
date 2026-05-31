@@ -4,75 +4,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TutorialsHero } from "../components/tutorials/TutorialsHero";
 import { TutorialCategories } from "../components/tutorials/TutorialCategories";
 import { TutorialCard } from "../components/tutorials/TutorialCard";
+import { LatestYoutubeVideos } from "../components/tutorials/LatestYoutubeVideos";
 import { TutorialsCTA } from "../components/tutorials/TutorialsCTA";
+import { tutorialCategories, tutorials } from "../data/tutorials.data";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const categories = [
-  "ABC Archicad",
-  "Modelado 3D",
-  "Documentación",
-  "Representación gráfica",
-  "Optimizar el tiempo",
-  "Errores frecuentes",
-];
-
-const tutorials = [
-  {
-    image: "/blog/puntos-en-planta/portada.png",
-    category: "Errores frecuentes",
-    title: "Se me ven puntitos en planta",
-    description:
-      "Aprende por que aparecen esos puntos en planta y como corregir la visualizacion sin perder tiempo.",
-    meta: "Video + guia paso a paso",
-    accent: "#FF6B81",
-  },
-  {
-    image: "/blog/no-hay-superficie/1.png",
-    category: "Modelado 3D",
-    title: "Cómo resolver el error de superficie",
-    description:
-      "Un caso practico para entender materiales, superficies y ajustes basicos del modelo.",
-    meta: "Proyecto guiado",
-    accent: "#7B6CFF",
-  },
-  {
-    image: "/blog/como-funcionan-las-plumas/portada.png",
-    category: "ABC Archicad",
-    title: "Cómo funcionan las plumas en Archicad",
-    description:
-      "Configura plumas con criterio para que tus plantas, cortes y laminas se lean mejor.",
-    meta: "Tip visual",
-    accent: "#FFB347",
-  },
-  {
-    image: "/blog/no-hay-superficie/2.png",
-    category: "Documentación",
-    title: "Ordena vistas antes de armar laminas",
-    description:
-      "Una forma simple de preparar vistas, escalas y estructura de documentacion para trabajar mas claro.",
-    meta: "Flujo de trabajo",
-    accent: "#2EC3FF",
-  },
-  {
-    image: "/blog/puntos-en-planta/4.png",
-    category: "Representacion grafica",
-    title: "Mejora la lectura grafica de tus plantas",
-    description:
-      "Ajustes concretos para lograr una planta mas limpia, profesional y facil de presentar.",
-    meta: "Clase aplicada",
-    accent: "#6ee7b7",
-  },
-  {
-    image: "/blog/no-hay-superficie/4.png",
-    category: "Optimizar el tiempo",
-    title: "Atajos para avanzar mas rapido",
-    description:
-      "Pequenos habitos de Archicad que reducen tareas repetitivas y ordenan tu proceso diario.",
-    meta: "Productividad",
-    accent: "#F43F5E",
-  },
-];
 
 export const Tutorials = () => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -99,6 +35,8 @@ export const Tutorials = () => {
             "[data-tutorial-blob]",
             "[data-tutorial-category]",
             "[data-tutorial-card]",
+            "[data-youtube-heading]",
+            "[data-youtube-video]",
             "[data-tutorial-cta]",
           ],
           { autoAlpha: 1, y: 0, scale: 1, rotate: 0 }
@@ -212,6 +150,38 @@ export const Tutorials = () => {
       );
 
       gsap.fromTo(
+        "[data-youtube-heading]",
+        { autoAlpha: 0, y: 24 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.58,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-youtube-heading]",
+            start: "top 82%",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        "[data-youtube-video]",
+        { autoAlpha: 0, y: 28, scale: 0.98 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.56,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-youtube-video]",
+            start: "top 82%",
+          },
+        }
+      );
+
+      gsap.fromTo(
         "[data-tutorial-cta]",
         { autoAlpha: 0, y: 30, scale: 0.98 },
         {
@@ -242,7 +212,7 @@ export const Tutorials = () => {
         data-tutorial-content
         className="relative z-10 border-t border-white/70 bg-[linear-gradient(180deg,#fbf8f8_0%,#ffffff_42%,#f7f4f5_100%)]"
       >
-        <TutorialCategories categories={categories} />
+        <TutorialCategories categories={tutorialCategories} />
 
         <section className="mx-auto max-w-[1240px] px-4 pb-14 pt-4 sm:px-6 md:pb-20 lg:px-10">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -255,7 +225,7 @@ export const Tutorials = () => {
               </h2>
             </div>
             <p className="max-w-[520px] text-sm leading-6 text-slate-600 md:text-base md:leading-7">
-              Guias claras y aplicadas a ejemplos reales para modelar,
+              Guías claras y aplicadas a ejemplos reales para modelar,
               documentar, representar y resolver problemas comunes dentro de
               Archicad.
             </p>
@@ -266,10 +236,17 @@ export const Tutorials = () => {
             className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {tutorials.map((tutorial) => (
-              <TutorialCard key={tutorial.title} tutorial={tutorial} />
+              <TutorialCard key={tutorial.slug} tutorial={tutorial} />
             ))}
           </div>
         </section>
+
+        <LatestYoutubeVideos
+          title="Últimos videos para seguir aprendiendo"
+          subtitle="Tutoriales gratuitos de Archicad con ejemplos claros, visuales y aplicados."
+          limit={7}
+          variant="carousel"
+        />
 
         <TutorialsCTA />
       </main>
